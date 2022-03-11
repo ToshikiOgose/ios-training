@@ -10,6 +10,8 @@ import Foundation
 import YumemiWeather
 
 class ViewController: UIViewController {
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+
     // 天気JSONデータ構造体
     struct WeatherJson: Codable {  // Codableインターフェースを実装する
         let max_temp: Int
@@ -26,10 +28,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var maxTemp: UILabel!
     @IBOutlet weak var minTemp: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     // 初期呼出
     override func viewDidLoad() {
         super.viewDidLoad()
+        appDelegate.changedScreen = false
         // Do any additional setup after loading the view.
+    }
+    @IBAction func closingScreen(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        appDelegate.changedScreen = false
     }
     // Reloadボタン押下時、天気データの取得
     @IBAction func fetchWeatherData(_ sender: Any) {

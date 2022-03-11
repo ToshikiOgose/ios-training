@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C809F82427DB27170028C833 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C809F82327DB27170028C833 /* InitialViewController.swift */; };
 		C85FDC2227D9E1E50077B40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FDC2127D9E1E50077B40D /* AppDelegate.swift */; };
 		C85FDC2427D9E1E50077B40D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FDC2327D9E1E50077B40D /* SceneDelegate.swift */; };
 		C85FDC2627D9E1E50077B40D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FDC2527D9E1E50077B40D /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C809F82327DB27170028C833 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		C85FDC1E27D9E1E50077B40D /* YumemiProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YumemiProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85FDC2127D9E1E50077B40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C85FDC2327D9E1E50077B40D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				C85FDC2127D9E1E50077B40D /* AppDelegate.swift */,
 				C85FDC2327D9E1E50077B40D /* SceneDelegate.swift */,
 				C85FDC2527D9E1E50077B40D /* ViewController.swift */,
+				C809F82327DB27170028C833 /* InitialViewController.swift */,
 				C85FDC2727D9E1E50077B40D /* Main.storyboard */,
 				C85FDC2A27D9E1E70077B40D /* Assets.xcassets */,
 				C85FDC2C27D9E1E70077B40D /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				C85FDC2627D9E1E50077B40D /* ViewController.swift in Sources */,
 				C85FDC2227D9E1E50077B40D /* AppDelegate.swift in Sources */,
 				C85FDC2427D9E1E50077B40D /* SceneDelegate.swift in Sources */,
+				C809F82427DB27170028C833 /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
