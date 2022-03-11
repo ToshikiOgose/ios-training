@@ -29,10 +29,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var minTemp: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
+    @objc func foreground(notification: Notification) {
+        getWeatherData()
+    }
+    @objc func background(notification: Notification) {
+        print("バックグラウンド")
+    }
     // 初期呼出
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate.changedScreen = false
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(foreground(notification:)),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil
+        )
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(background(notification:)),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil
+        )
         // Do any additional setup after loading the view.
     }
     @IBAction func closingScreen(_ sender: Any) {
@@ -41,6 +57,9 @@ class ViewController: UIViewController {
     }
     // Reloadボタン押下時、天気データの取得
     @IBAction func fetchWeatherData(_ sender: Any) {
+        getWeatherData()
+    }
+    func getWeatherData(){
         do {
             // 送信JSONデータ作成
             let sendingParamJson = SendingParams(area: "tokyo", date: Date())

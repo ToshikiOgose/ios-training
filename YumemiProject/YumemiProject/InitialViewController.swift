@@ -19,5 +19,6 @@ class InitialViewController: UIViewController{
             self.performSegue(withIdentifier: "toNext", sender: nil)
             appDelegate.changedScreen = Bool(true)
         }
+        
     }
 }
