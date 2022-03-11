@@ -18,17 +18,35 @@ class ViewController: UIViewController {
     }
 
     @IBAction func fetchWeatherData(_ sender: Any) {
-        let fetchedWeatherData = YumemiWeather.fetchWeather()
-        let fetchedDataImage = UIImage(named:fetchedWeatherData)
-        //fetchedDataImage?.withTintColor(.orange)
-        weatherImageView.image = fetchedDataImage
-        switch fetchedWeatherData {
-        case "rainy":
-            weatherImageView.tintColor = .blue
-        case "sunny":
-            weatherImageView.tintColor = .red
-        default:
-            weatherImageView.tintColor = .gray
+        do {
+            let fetchedWeatherData = try YumemiWeather.fetchWeather(at:"tokyo")
+            let fetchedDataImage = UIImage(named:fetchedWeatherData)
+            //fetchedDataImage?.withTintColor(.orange)
+            weatherImageView.image = fetchedDataImage
+            switch fetchedWeatherData {
+            case "rainy":
+                weatherImageView.tintColor = .blue
+            case "sunny":
+                weatherImageView.tintColor = .red
+            default:
+                weatherImageView.tintColor = .gray
+            }
+        }catch{
+            let errorString:String = String(describing:(type(of: error)))
+            let message:String
+            switch errorString {
+            case "invalidParameterError":
+                message = "入力情報に問題があります"
+            case "unknownError":
+                message = "調査のためにQAまでご連絡ください"
+            default:
+                message = "サポートまで連絡して下さい"
+            }
+            let alert = UIAlertController(title: errorString,
+                                          message: message,
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
