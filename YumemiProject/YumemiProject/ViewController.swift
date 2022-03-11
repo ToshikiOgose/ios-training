@@ -10,38 +10,50 @@ import Foundation
 import YumemiWeather
 
 class ViewController: UIViewController {
+    // 天気JSONデータ構造体
     struct WeatherJson: Codable {  // Codableインターフェースを実装する
         let max_temp: Int
         let min_temp: Int
         let weather: String
     }
+    // 送信用JSONデータ構造体
     struct SendingParams:Codable {
         var area: String
         var date: Date?
     }
+    // UI変数
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var maxTemp: UILabel!
     @IBOutlet weak var minTemp: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
+    // 初期呼出
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    // Reloadボタン押下時、天気データの取得
     @IBAction func fetchWeatherData(_ sender: Any) {
         do {
+            // 送信JSONデータ作成
             let sendingParamJson = SendingParams(area: "tokyo", date: Date())
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
             encoder.dateEncodingStrategy = .iso8601
+            // 送信JSONデータをバイト化
             let sendingParamData = try! encoder.encode(sendingParamJson)
+            // 送信JSONデータを文字列化
             let sendingParamJsonString = String(data: sendingParamData, encoding: .utf8)!
+            // 送信JSONデータを送信
             let fetchedWeatherData = try YumemiWeather.fetchWeather(sendingParamJsonString)
+            // 取得データをバイト化
             let weatherData = fetchedWeatherData.data(using: .utf8)
+            // 取得データをJSON化
             let weatherJsonData = try! JSONDecoder().decode(WeatherJson.self, from: weatherData!)
+            // 画像データの決定
             let fetchedDataImage = UIImage(named:weatherJsonData.weather)
-            //fetchedDataImage?.withTintColor(.orange)
+            // 画像データをセット
             weatherImageView.image = fetchedDataImage
+            // 画像の色分岐
             switch weatherJsonData.weather {
             case "rainy":
                 weatherImageView.tintColor = .blue
@@ -50,9 +62,11 @@ class ViewController: UIViewController {
             default:
                 weatherImageView.tintColor = .gray
             }
+            // 最低最高気温を設定
             minTemp.text = String(describing: weatherJsonData.min_temp)
             maxTemp.text = String(describing: weatherJsonData.max_temp)
         }catch{
+            // エラー分岐処理
             let errorString:String = String(describing:(type(of: error)))
             let message:String
             switch errorString {
