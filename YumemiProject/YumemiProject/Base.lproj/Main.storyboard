@@ -74,6 +74,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="maxTemp" destination="JQ8-EB-a22" id="3fb-Ch-Vif"/>
+                        <outlet property="minTemp" destination="Hry-0o-72u" id="sl9-Rr-SVN"/>
                         <outlet property="reloadButton" destination="Pwg-XD-uTN" id="0eW-W4-UDe"/>
                         <outlet property="weatherImageView" destination="c9U-Lg-J8k" id="7Kd-Ks-neX"/>
                     </connections>
